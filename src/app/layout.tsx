@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "VeriDoc // Academic Trust Network",
+  title: "FileOk // Academic Trust Network",
   description:
     "Decentralized Academic Credential & Multi-University Registry for Instant Degree Verification",
 };

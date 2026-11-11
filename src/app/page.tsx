@@ -118,7 +118,7 @@ function AppContent() {
                   <ShieldCheck className="w-3.5 h-3.5" />
                 </div>
                 <span className="text-sm font-bold text-[#0F0F0F]">
-                  VeriDoc // Academic Trust Network
+                  FileOk // Academic Trust Network
                 </span>
               </div>
               <p className="text-xs text-[#606060] max-w-md leading-relaxed">
@@ -167,7 +167,7 @@ function AppContent() {
 
           <div className="pt-6 border-t border-[#E5E5E5] flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#606060]">
             <div>
-              © {new Date().getFullYear()} VeriDoc Academic Trust Network. All
+              © {new Date().getFullYear()} FileOk Academic Trust Network. All
               rights reserved.
             </div>
             <div className="flex items-center gap-4">
@@ -187,7 +187,7 @@ export default function HomePage() {
     <Suspense
       fallback={
         <div className="min-h-screen bg-white flex items-center justify-center text-[#606060] text-sm">
-          Loading VeriDoc Trust Network...
+          Loading FileOk Trust Network...
         </div>
       }
     >

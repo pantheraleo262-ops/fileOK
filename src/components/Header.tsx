@@ -60,7 +60,7 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
             <div className="flex items-baseline gap-1.5">
               <span className="text-xl font-bold tracking-tight text-[#0F0F0F] font-sans">
-                VeriDoc
+                FileOk
               </span>
               <span className="hidden sm:inline-block text-[11px] font-semibold text-[#606060] tracking-normal">
                 Academic Trust

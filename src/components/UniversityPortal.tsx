@@ -149,7 +149,7 @@ export const UniversityPortal: React.FC<UniversityPortalProps> = ({
     link.href = url;
     link.setAttribute(
       "download",
-      `VeriDoc_Graduate_Template_${activeUniversity.shortName}.csv`
+      `FileOk_Graduate_Template_${activeUniversity.shortName}.csv`
     );
     document.body.appendChild(link);
     link.click();

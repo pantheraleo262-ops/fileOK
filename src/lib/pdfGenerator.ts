@@ -148,7 +148,7 @@ export async function generateCertificatePDF(
   });
 
   // Generate QR Code for live verification
-  const verifyUrl = `${typeof window !== "undefined" ? window.location.origin : "https://veridoc.academic"}/?tab=verify&id=${encodeURIComponent(cert.id)}&hash=${encodeURIComponent(cert.digitalFingerprint)}`;
+  const verifyUrl = `${typeof window !== "undefined" ? window.location.origin : "https://fileok.academic"}/?tab=verify&id=${encodeURIComponent(cert.id)}&hash=${encodeURIComponent(cert.digitalFingerprint)}`;
   const qrDataUrl = await QRCode.toDataURL(verifyUrl, {
     margin: 1,
     width: 140,
@@ -227,7 +227,7 @@ export async function generateCertificatePDF(
   doc.setFontSize(5.5);
   doc.setTextColor(100, 116, 139);
   doc.text(
-    `INSTITUTIONAL SIGNER: ${cert.institutionalSigner}  |  REGISTRY BLOCK #${cert.blockNumber}  |  CANONICAL: VERIDOC-V2-SHA256`,
+    `INSTITUTIONAL SIGNER: ${cert.institutionalSigner}  |  REGISTRY BLOCK #${cert.blockNumber}  |  CANONICAL: FILEOK-V2-SHA256`,
     width / 2,
     footerY + 2.5,
     { align: "center" }
@@ -238,8 +238,8 @@ export async function generateCertificatePDF(
     title: `Academic Credential - ${cert.studentName} (${cert.id})`,
     subject: `Digital Fingerprint: ${cert.digitalFingerprint}`,
     author: cert.universityName,
-    keywords: `VeriDoc, ${cert.id}, ${cert.digitalFingerprint}, ${cert.studentRoll}`,
-    creator: "VeriDoc Academic Trust Network",
+    keywords: `FileOk, ${cert.id}, ${cert.digitalFingerprint}, ${cert.studentRoll}`,
+    creator: "FileOk Academic Trust Network",
   });
 
   const blob = doc.output("blob");
@@ -283,7 +283,7 @@ export async function generateHRClearanceReportPDF(
   doc.setFont("helvetica", "bold");
   doc.setFontSize(16);
   doc.setTextColor(255, 255, 255);
-  doc.text("VERIDOC // ACADEMIC TRUST NETWORK", 18, 16);
+  doc.text("FILEOK // ACADEMIC TRUST NETWORK", 18, 16);
 
   doc.setFont("helvetica", "normal");
   doc.setFontSize(9);
@@ -480,12 +480,12 @@ export async function generateHRClearanceReportPDF(
   doc.setFontSize(8);
   doc.setTextColor(71, 85, 105);
   const disclaimer =
-    "This certificate of clearance was generated via the VeriDoc Academic Trust Network. It confirms that the candidate's academic record has been directly authenticated against the issuing university's immutable registry ledger. In compliance with fair recruitment standards, this document serves as verified proof of degree completion for employment background checks.";
+    "This certificate of clearance was generated via the FileOk Academic Trust Network. It confirms that the candidate's academic record has been directly authenticated against the issuing university's immutable registry ledger. In compliance with fair recruitment standards, this document serves as verified proof of degree completion for employment background checks.";
   const splitText = doc.splitTextToSize(disclaimer, width - 75);
   doc.text(splitText, 18, curY);
 
   // QR Code on right side of attestation
-  const verifyUrl = `${typeof window !== "undefined" ? window.location.origin : "https://veridoc.academic"}/?tab=verify&id=${encodeURIComponent(cert.id)}`;
+  const verifyUrl = `${typeof window !== "undefined" ? window.location.origin : "https://fileok.academic"}/?tab=verify&id=${encodeURIComponent(cert.id)}`;
   const qrDataUrl = await QRCode.toDataURL(verifyUrl, {
     margin: 1,
     width: 120,
@@ -507,7 +507,7 @@ export async function generateHRClearanceReportPDF(
   doc.setFontSize(7.5);
   doc.setTextColor(100, 116, 139);
   doc.text(
-    "ISSUED BY: VeriDoc Decentralized Academic Registry  |  ISO 27001 Cryptographic Standards  |  Non-Repudiation Verified",
+    "ISSUED BY: FileOk Decentralized Academic Registry  |  ISO 27001 Cryptographic Standards  |  Non-Repudiation Verified",
     18,
     footerY + 1
   );

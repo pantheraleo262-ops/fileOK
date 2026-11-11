@@ -72,13 +72,13 @@ export async function hashFile(file: File): Promise<string> {
 }
 
 /**
- * Extracts embedded VeriDoc credential ID or fingerprint from text or file content
+ * Extracts embedded FileOk credential ID or fingerprint from text or file content
  */
 export function extractCertMetadataFromText(text: string): {
   id?: string;
   hash?: string;
 } {
-  const idMatch = text.match(/CERT-[A-Z0-9]+-\d{4}-[A-Z0-9]+/i);
+  const idMatch = text.match(/(?:CERT|FILEOK)-[A-Z0-9]+-\d{4}-[A-Z0-9]+/i);
   const hashMatch = text.match(/0x[a-fA-F0-9]{64}/);
 
   return {

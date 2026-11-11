@@ -1,4 +1,4 @@
-# VeriDoc // Academic Trust Network
+# FileOk // Academic Trust Network
 ### Decentralized Multi-University Academic Credential Registry & Verification Ledger
 
 [![Next.js](https://img.shields.io/badge/Next.js-16.4-black?logo=next.js)](https://nextjs.org/)
@@ -6,25 +6,25 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
 [![Solidity](https://img.shields.io/badge/Solidity-0.8.20-363636?logo=solidity)](https://soliditylang.org/)
 [![Viem](https://img.shields.io/badge/Viem-2.5-orange)](https://viem.sh/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.txt)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
 
 ## Executive Summary
 
-**VeriDoc** is an enterprise-grade, decentralized academic credential registry built to eradicate diploma fraud, streamline international recruitment, and eliminate single points of failure in centralized educational repositories.
+**FileOk** is an enterprise-grade, decentralized academic credential registry built to eradicate diploma fraud, streamline international recruitment, and eliminate single points of failure in centralized educational repositories.
 
-By translating complex Web3 cryptography into a consumer-grade, zero-jargon **YouTube Light Mode** interface, VeriDoc allows employers, recruiters, and students to authenticate university credentials in milliseconds without requiring cryptocurrency wallets, gas fees, or third-party API keys.
+By translating complex Web3 cryptography into a consumer-grade, zero-jargon **YouTube Light Mode** interface, **FileOk** allows employers, recruiters, and students to authenticate university credentials in milliseconds without requiring cryptocurrency wallets, gas fees, or third-party API keys.
 
 ---
 
 ## System Architecture: Hybrid Web2-Web3 Infrastructure
 
-VeriDoc combines client-side cryptographic hashing with distributed ledger immutability and institutional sovereignty:
+FileOk combines client-side cryptographic hashing with distributed ledger immutability and institutional sovereignty:
 
 ```
                                   ┌──────────────────────────────────────────────┐
-                                  │      VeriDoc // Academic Trust Network       │
+                                  │       FileOk // Academic Trust Network       │
                                   └──────────────────────┬───────────────────────┘
                                                          │
                 ┌───────────────────────────┬────────────┴────────────┬───────────────────────────┐
@@ -38,10 +38,10 @@ VeriDoc combines client-side cryptographic hashing with distributed ledger immut
       ┌───────────────────┐       ┌───────────────────┐     ┌───────────────────┐       ┌───────────────────┐
       │ • Dual-Hash Engine│       │ • Official Degree │     │ • Single Issuance │       │ • Rahul Sharma    │
       │ • Drag & Drop PDF │       │   Seal & Watermark│     │ • Bulk CSV Batch  │       │   (8.85 CGPA)     │
-      │ • Camera QR Scan  │       │ • Stamped PDF DL  │     │ • Merkle/Batch Root       │ • Grade Tampering │
-      │ • HR Clearance    │       │ • Verifiable Link │     │ • Senate Order    │       │   (8.85 -> 9.85)  │
-      │   Report (PDF)    │       │ • Add to LinkedIn │     │   Revocation      │       │ • Avalanche Diff  │
-      │ • 3 Result States │       │ • 1-Click Demo    │     │ • Sample CSV DL   │       │ • DigiLocker Comp │
+      │ • Camera QR Scan  │       │ • Stamped PDF DL  │     │ • Merkle/Batch    │       │ • Grade Tampering │
+      │ • HR Clearance    │       │ • Verifiable Link │     │   Anchoring       │       │   (8.85 -> 9.85)  │
+      │   Report (PDF)    │       │ • Add to LinkedIn │     │ • Senate Order    │       │ • Avalanche Diff  │
+      │ • 3 Result States │       │ • 1-Click Demo    │     │   Revocation      │       │ • DigiLocker Comp │
       └───────────────────┘       └───────────────────┘     └───────────────────┘       └───────────────────┘
                                                          │
                                 ┌────────────────────────┴────────────────────────┐
@@ -51,9 +51,37 @@ VeriDoc combines client-side cryptographic hashing with distributed ledger immut
              1-sec confirmation delay simulation                Arbitrum Sepolia (Chain ID: 421614)
 ```
 
+### Merkle Root Batching & Verification Flow
+
+```mermaid
+flowchart TD
+    subgraph University_Issuance ["University Admin Studio"]
+        A[Bulk CSV of Graduates] --> B[Parse Candidate Rows]
+        B --> C[Compute Individual Digital Fingerprints SHA-256]
+        C --> D[Generate Merkle Tree / Batch Root]
+        D --> E[Anchor Batch Hash to Smart Contract]
+    end
+
+    subgraph Student_Layer ["Student Self-Service Hub"]
+        E -.-> F[Generate Tamper-Proof Stamped PDF]
+        F --> G[Embed Verification QR Code & Canonical Payload]
+    end
+
+    subgraph Verification_Layer ["Public Verifier (Zero Login)"]
+        H[Recruiter Drops PDF or Scans QR] --> I[Web Crypto In-Browser Hashing]
+        I --> J{Match Against On-Chain Ledger?}
+        J -->|Match Found & Valid| K[AUTHENTIC - Green Badge]
+        K --> L[Generate HR Clearance Report PDF]
+        J -->|Hash Divergence| M[TAMPERED / INVALID - Red Alert]
+        J -->|Revoked by Senate| N[REVOKED - Amber Badge with Disciplinary Record]
+    end
+```
+
+---
+
 ### Zero-Jargon Translation Matrix
 
-| Technical Cryptographic Term | VeriDoc User-Facing Term | Plain English Purpose |
+| Technical Cryptographic Term | FileOk User-Facing Term | Plain English Purpose |
 | :--- | :--- | :--- |
 | **SHA-256 / Keccak256** | **Digital Fingerprint** | Unique 256-bit mathematical summary of degree attributes |
 | **Smart Contract** | **Official University Registry** | Multi-tenant immutable ledger governing authorized signers |
@@ -106,7 +134,7 @@ VeriDoc combines client-side cryptographic hashing with distributed ledger immut
 | **Gas Fees** | Free (0 Gas) | Arbitrum Sepolia Testnet ETH |
 | **Storage Layer** | LocalStorage + In-Memory State | EVM Smart Contract (`0x35Fa...009e`) |
 | **Confirmation Delay** | Realistic 1.0s Simulation | On-Chain Block Confirmation |
-| **Ideal For** | Hackathon Demos, Recruiters, Offline Testing | Production & On-Chain Auditing |
+| **Ideal For** | Live Testing, Recruiters, Offline Evaluation | Production & On-Chain Auditing |
 
 ---
 
@@ -114,7 +142,7 @@ VeriDoc combines client-side cryptographic hashing with distributed ledger immut
 
 Located in [`contracts/CertificateRegistry.sol`](contracts/CertificateRegistry.sol):
 - Multi-tenant mapping: `universityCode => University` and `certHash => CertificateRecord`.
-- Functions:
+- Key Functions:
   - `registerUniversity(uint256 universityCode, string name, address signer)`
   - `issueCertificate(bytes32 certHash, uint256 universityCode, string certId, string studentRoll)`
   - `issueBatch(bytes32[] certHashes, uint256 universityCode, string[] certIds, string[] studentRolls)`
@@ -174,4 +202,4 @@ npm run start
 - **Shruti** (3rd Year)
 - **Misha** (1st Year)
 
-*Licensed under the [MIT License](LICENSE.txt).*
+*Licensed under the [MIT License](LICENSE).*

@@ -96,7 +96,8 @@ export const CONTRACT_ABI = [
 export const CONTRACT_ADDRESS_ARBITRUM_SEPOLIA =
   "0x35Fa2DbBeA215E9110B6e80b2A6dE58f5C01009e" as `0x${string}`;
 
-const STORAGE_KEY = "veridoc_registry_certificates_v2";
+const STORAGE_KEY = "fileok_registry_certificates_v2";
+const LEGACY_STORAGE_KEY = "veridoc_registry_certificates_v2";
 
 // Deterministic seed records
 export const SEED_CERTIFICATES: Certificate[] = [
@@ -191,7 +192,14 @@ export function getAllCertificates(): Certificate[] {
     return SEED_CERTIFICATES;
   }
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    let raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) {
+      const legacyRaw = localStorage.getItem(LEGACY_STORAGE_KEY);
+      if (legacyRaw) {
+        raw = legacyRaw;
+        localStorage.setItem(STORAGE_KEY, legacyRaw);
+      }
+    }
     if (!raw) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(SEED_CERTIFICATES));
       return SEED_CERTIFICATES;

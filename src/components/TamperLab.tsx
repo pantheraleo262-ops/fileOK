@@ -417,7 +417,7 @@ export const TamperLab: React.FC = () => {
         </h4>
         <p className="text-[#606060] leading-relaxed">
           In legacy recruitment, applicants could easily alter PDF transcripts or
-          scan photoshopped degree certificates. With <strong>VeriDoc</strong>, the
+          scan photoshopped degree certificates. With <strong>FileOk</strong>, the
           university anchors the mathematical fingerprint on a public, immutable
           ledger. If even one digit or letter is altered, the resulting
           fingerprint diverges entirely, instantly alerting recruiters before an
@@ -485,7 +485,7 @@ export const TamperLab: React.FC = () => {
           <div className="p-5 rounded-2xl bg-white border border-[#CEEAD6] space-y-3 shadow-xs">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-[#137333] uppercase tracking-wider">
-                VeriDoc Decentralized Trust Network
+                FileOk Decentralized Trust Network
               </span>
               <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#E6F4EA] text-[#137333] font-semibold">
                 Immutable Ledger
@@ -516,7 +516,7 @@ export const TamperLab: React.FC = () => {
         </div>
 
         <div className="p-4 rounded-xl bg-[#F8F9FA] border border-[#E5E5E5] text-xs text-[#606060]">
-          <strong className="text-[#0F0F0F]">The Ideal Symbiosis:</strong> DigiLocker serves as the sovereign student locker for document issuance and storage, while VeriDoc anchors the cryptographic fingerprint on a public ledger for frictionless, cross-border employer verification.
+          <strong className="text-[#0F0F0F]">The Ideal Symbiosis:</strong> DigiLocker serves as the sovereign student locker for document issuance and storage, while FileOk anchors the cryptographic fingerprint on a public ledger for frictionless, cross-border employer verification.
         </div>
       </div>
     </div>

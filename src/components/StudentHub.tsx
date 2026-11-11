@@ -76,7 +76,7 @@ export const StudentHub: React.FC = () => {
     const origin =
       typeof window !== "undefined"
         ? window.location.origin
-        : "https://veridoc.academic";
+        : "https://fileok.academic";
     return `${origin}/?tab=verify&id=${encodeURIComponent(certId)}`;
   };
 
