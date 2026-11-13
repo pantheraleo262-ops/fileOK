@@ -1,6 +1,7 @@
 import jsPDF from "jspdf";
 import QRCode from "qrcode";
 import { Certificate } from "@/types";
+import { generateVerificationUrl } from "./credential";
 
 /**
  * Generates an executive, institutional-grade academic degree certificate PDF.
@@ -148,7 +149,7 @@ export async function generateCertificatePDF(
   });
 
   // Generate QR Code for live verification
-  const verifyUrl = `${typeof window !== "undefined" ? window.location.origin : "https://fileok.academic"}/?tab=verify&id=${encodeURIComponent(cert.id)}&hash=${encodeURIComponent(cert.digitalFingerprint)}`;
+  const verifyUrl = generateVerificationUrl(cert);
   const qrDataUrl = await QRCode.toDataURL(verifyUrl, {
     margin: 1,
     width: 140,
@@ -227,7 +228,7 @@ export async function generateCertificatePDF(
   doc.setFontSize(5.5);
   doc.setTextColor(100, 116, 139);
   doc.text(
-    `INSTITUTIONAL SIGNER: ${cert.institutionalSigner}  |  REGISTRY BLOCK #${cert.blockNumber}  |  CANONICAL: FILEOK-V2-SHA256`,
+    `INSTITUTIONAL SIGNER: ${cert.institutionalSigner}  |  REGISTRY BLOCK #${cert.blockNumber}${cert.ipfsCid ? `  |  IPFS: ${cert.ipfsCid.slice(0, 20)}...` : ""}  |  CANONICAL: FILEOK-V2-SHA256`,
     width / 2,
     footerY + 2.5,
     { align: "center" }
@@ -485,7 +486,7 @@ export async function generateHRClearanceReportPDF(
   doc.text(splitText, 18, curY);
 
   // QR Code on right side of attestation
-  const verifyUrl = `${typeof window !== "undefined" ? window.location.origin : "https://fileok.academic"}/?tab=verify&id=${encodeURIComponent(cert.id)}`;
+  const verifyUrl = generateVerificationUrl(cert);
   const qrDataUrl = await QRCode.toDataURL(verifyUrl, {
     margin: 1,
     width: 120,

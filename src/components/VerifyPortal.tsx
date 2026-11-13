@@ -20,7 +20,7 @@ import {
   FileText,
   FileCheck2,
 } from "lucide-react";
-import { Certificate, VerificationResult } from "@/types";
+import { Certificate, VerificationResult, ExecutionMode } from "@/types";
 import { verifyDocument } from "@/lib/registry";
 import { hashFile, extractCertMetadataFromText } from "@/lib/crypto";
 import {
@@ -31,12 +31,18 @@ import {
 interface VerifyPortalProps {
   initialCertId?: string;
   initialHash?: string;
+  initialProof?: string;
+  initialRedacted?: string;
+  mode?: ExecutionMode;
   onNavigateToTamperLab?: () => void;
 }
 
 export const VerifyPortal: React.FC<VerifyPortalProps> = ({
   initialCertId,
   initialHash,
+  initialProof,
+  initialRedacted,
+  mode = "DEMO",
   onNavigateToTamperLab,
 }) => {
   const [activeMethod, setActiveMethod] = useState<"file" | "camera" | "search">(

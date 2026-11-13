@@ -19,6 +19,8 @@ function AppContent() {
   const initialTab = (searchParams.get("tab") as TabType) || "verify";
   const initialId = searchParams.get("id") || undefined;
   const initialHash = searchParams.get("hash") || undefined;
+  const initialProof = searchParams.get("proof") || undefined;
+  const initialRedacted = searchParams.get("redacted") || undefined;
 
   const [currentTab, setCurrentTab] = useState<TabType>(initialTab);
   const [mode, setMode] = useState<ExecutionMode>("DEMO");
@@ -90,6 +92,9 @@ function AppContent() {
             <VerifyPortal
               initialCertId={activeCertSearch}
               initialHash={activeHashSearch}
+              initialProof={initialProof}
+              initialRedacted={initialRedacted}
+              mode={mode}
               onNavigateToTamperLab={() => setCurrentTab("tamper")}
             />
           )}

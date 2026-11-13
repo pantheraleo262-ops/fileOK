@@ -12,6 +12,8 @@ import {
   ArrowRight,
   LogOut,
   Sparkles,
+  EyeOff,
+  ShieldCheck,
 } from "lucide-react";
 import { Certificate } from "@/types";
 import {
@@ -19,6 +21,7 @@ import {
   getCertificateByRoll,
 } from "@/lib/registry";
 import { generateCertificatePDF } from "@/lib/pdfGenerator";
+import { generateVerificationUrl } from "@/lib/credential";
 
 export const StudentHub: React.FC = () => {
   const [selectedUniCode, setSelectedUniCode] = useState<number>(1042);
@@ -28,6 +31,7 @@ export const StudentHub: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isDownloading, setIsDownloading] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
+  const [isPrivacyMode, setIsPrivacyMode] = useState(false);
   const [showLinkedInModal, setShowLinkedInModal] = useState(false);
 
   const handleLogin = (e: React.FormEvent) => {
@@ -72,17 +76,13 @@ export const StudentHub: React.FC = () => {
     }
   };
 
-  const getPublicVerificationUrl = (certId: string) => {
-    const origin =
-      typeof window !== "undefined"
-        ? window.location.origin
-        : "https://fileok.academic";
-    return `${origin}/?tab=verify&id=${encodeURIComponent(certId)}`;
+  const getPublicVerificationUrl = (cert: Certificate) => {
+    return generateVerificationUrl(cert, { hideCgpa: isPrivacyMode });
   };
 
   const handleCopyLink = () => {
     if (!activeCertificate) return;
-    const url = getPublicVerificationUrl(activeCertificate.id);
+    const url = getPublicVerificationUrl(activeCertificate);
     navigator.clipboard.writeText(url);
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), 2500);
@@ -97,7 +97,7 @@ export const StudentHub: React.FC = () => {
       issueYear: cert.graduationYear.toString(),
       issueMonth: "6",
       certId: cert.id,
-      certUrl: getPublicVerificationUrl(cert.id),
+      certUrl: getPublicVerificationUrl(cert),
     });
     return `${baseUrl}?${params.toString()}`;
   };
@@ -432,7 +432,7 @@ export const StudentHub: React.FC = () => {
               <div>
                 <span className="text-[#606060]">Verification URL:</span>{" "}
                 <span className="text-[#137333] font-mono text-[10px] break-all">
-                  {getPublicVerificationUrl(activeCertificate.id)}
+                  {getPublicVerificationUrl(activeCertificate)}
                 </span>
               </div>
             </div>

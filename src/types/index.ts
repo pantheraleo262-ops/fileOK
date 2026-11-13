@@ -29,6 +29,52 @@ export interface Certificate {
   isValid: boolean;
   revocationReason?: string;
   revocationDate?: string;
+  // Privacy & Selective Disclosure commitments
+  cgpaHash?: string;
+  degreeHash?: string;
+  salt?: string;
+  // Decentralized Storage
+  ipfsCid?: string;
+  // Governance & Two-Person Approval audit trail
+  preparedBy?: string;
+  approvedBy?: string;
+  approvalTimestamp?: number;
+}
+
+export type StaffRole = "CLERK" | "REGISTRAR";
+
+export type ApprovalStatus = "PENDING" | "APPROVED" | "REJECTED";
+export type SubmissionType = "SINGLE" | "BATCH";
+
+export interface PendingApproval {
+  id: string; // e.g. "REQ-HSTU-2026-0482"
+  type: SubmissionType;
+  preparedBy: string; // e.g. "Exam Clerk (Academic Section)"
+  submittedAt: string;
+  universityCode: number;
+  universityName: string;
+  status: ApprovalStatus;
+  rejectionReason?: string;
+  approvedAt?: string;
+  approvedBy?: string;
+  singleRecord?: {
+    studentName: string;
+    studentRoll: string;
+    degree: string;
+    graduationYear: number;
+    cgpa: number;
+    honors: string;
+    ipfsCid?: string;
+  };
+  batchRecords?: Array<{
+    studentName: string;
+    studentRoll: string;
+    degree: string;
+    graduationYear: number;
+    cgpa: number;
+    honors: string;
+    ipfsCid?: string;
+  }>;
 }
 
 export type VerificationStatus = "AUTHENTIC" | "TAMPERED" | "REVOKED" | "NOT_FOUND";
@@ -39,6 +85,8 @@ export interface VerificationResult {
   calculatedHash?: string;
   targetId?: string;
   message: string;
+  isPortableProof?: boolean;
+  isCgpaRedacted?: boolean;
   details?: {
     tamperedField?: string;
     originalValue?: string;
